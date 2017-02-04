@@ -708,6 +708,16 @@ describe('Thorn', () => {
                     expect(server.isDone()).to.be.true;
                 });
             });
+
+            it('should clear cachedAgents', function*() {
+                nock(process.env.THORN_SERVER_URL)
+                    .post(isTokenReq)
+                    .reply(200, ACCESS);
+
+                let agent = Agent.as('Yvan');
+                yield Fixtures.cleanup();
+
+            });
         });
     });
 
